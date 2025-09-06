@@ -35,26 +35,18 @@
       }
     }
   },
-  "forwardPorts": [8081, 19000, 19001, 19002, 3000],
+  "forwardPorts": [3000, 8081, 19000],
   "portsAttributes": {
+    "3000": {
+      "label": "Nebula Sports Web App",
+      "onAutoForward": "openBrowser"
+    },
     "8081": {
       "label": "Metro Bundler",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "notify"
     },
     "19000": {
       "label": "Expo Dev Tools",
-      "onAutoForward": "openBrowser"
-    },
-    "19001": {
-      "label": "Expo Dev Server",
-      "onAutoForward": "openBrowser"
-    },
-    "19002": {
-      "label": "Expo Dev Server (Tunnel)",
-      "onAutoForward": "openBrowser"
-    },
-    "3000": {
-      "label": "Web App",
       "onAutoForward": "openBrowser"
     }
   },
