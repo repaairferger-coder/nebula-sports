@@ -35,23 +35,27 @@
       }
     }
   },
-  "forwardPorts": [8081, 19000, 19001, 19002],
+  "forwardPorts": [8081, 19000, 19001, 19002, 3000],
   "portsAttributes": {
     "8081": {
       "label": "Metro Bundler",
-      "onAutoForward": "notify"
+      "onAutoForward": "openBrowser"
     },
     "19000": {
       "label": "Expo Dev Tools",
-      "onAutoForward": "notify"
+      "onAutoForward": "openBrowser"
     },
     "19001": {
       "label": "Expo Dev Server",
-      "onAutoForward": "notify"
+      "onAutoForward": "openBrowser"
     },
     "19002": {
       "label": "Expo Dev Server (Tunnel)",
-      "onAutoForward": "notify"
+      "onAutoForward": "openBrowser"
+    },
+    "3000": {
+      "label": "Web App",
+      "onAutoForward": "openBrowser"
     }
   },
   "postCreateCommand": "npm install && npx expo install --fix",

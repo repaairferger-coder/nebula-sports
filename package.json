@@ -6,6 +6,7 @@
   "scripts": {
     "start": "expo start",
     "start:codespace": "expo start --host 0.0.0.0",
+    "start:web:codespace": "expo start --web --host 0.0.0.0 --port 19000",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
