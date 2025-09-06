@@ -50,8 +50,7 @@
       "onAutoForward": "openBrowser"
     }
   },
-  "postCreateCommand": "
-  npm install && npx expo install --fix",
+  "postCreateCommand": "npm install && npm install -g @expo/cli@latest && npx expo install --fix",
   "remoteUser": "node",
   "workspaceFolder": "/workspaces/nebula-sports",
   "mounts": [
