@@ -35,10 +35,14 @@
       }
     }
   },
-  "forwardPorts": [3000, 8081, 19000],
+  "forwardPorts": [5000, 3000, 8081, 19000],
   "portsAttributes": {
+    "5000": {
+      "label": "Nebula Sports Python Web",
+      "onAutoForward": "openBrowser"
+    },
     "3000": {
-      "label": "Nebula Sports Web App",
+      "label": "Nebula Sports React Web",
       "onAutoForward": "openBrowser"
     },
     "8081": {

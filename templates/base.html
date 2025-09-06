@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nebula Sports{% endblock %}</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>Nebula Sports</span>
+                </div>
+                
+                <!-- News Ticker -->
+                <div class="news-ticker">
+                    <div class="ticker-content">
+                        <span class="ticker-label">НОВОСТИ:</span>
+                        <div class="ticker-text" id="newsTicker">
+                            Загрузка новостей...
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- User Profile -->
+                <div class="user-profile">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <span class="profile-name">Космонавт</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 65%"></div>
+            <div class="progress-text">Уровень 5 - Космический путешественник</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="/" class="nav-item {% if request.endpoint == 'index' %}active{% endif %}">
+            <i class="fas fa-home"></i>
+            <span>Главная</span>
+        </a>
+        <a href="/stream/1" class="nav-item">
+            <i class="fas fa-play-circle"></i>
+            <span>Трансляции</span>
+        </a>
+        <a href="/chat" class="nav-item {% if request.endpoint == 'chat_page' %}active{% endif %}">
+            <i class="fas fa-comments"></i>
+            <span>Чат</span>
+        </a>
+        <a href="/analytics" class="nav-item {% if request.endpoint == 'analytics_page' %}active{% endif %}">
+            <i class="fas fa-chart-line"></i>
+            <span>Аналитика</span>
+        </a>
+        <a href="/profile" class="nav-item {% if request.endpoint == 'profile_page' %}active{% endif %}">
+            <i class="fas fa-user"></i>
+            <span>Профиль</span>
+        </a>
+    </nav>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

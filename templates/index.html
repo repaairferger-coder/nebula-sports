@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Nebula Sports{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="cosmic-text">Nebula Sports</span>
+                <span class="hero-subtitle">Космическая спортивная экосистема</span>
+            </h1>
+            <p class="hero-description">
+                Смотрите трансляции 20 видов спорта, общайтесь с фанатами и отслеживайте свой прогресс в космическом путешествии!
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">Видов спорта</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Зрителей онлайн</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Трансляций в день</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-animation">
+            <div class="cosmic-bg">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sports Grid -->
+    <section class="sports-section">
+        <h2 class="section-title">
+            <i class="fas fa-rocket"></i>
+            Популярные трансляции
+        </h2>
+        <div class="sports-grid" id="sportsGrid">
+            <!-- Sports will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">
+            <i class="fas fa-star"></i>
+            Возможности платформы
+        </h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Прямые трансляции</h3>
+                <p>Смотрите матчи в реальном времени с высоким качеством</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Чат с фанатами</h3>
+                <p>Общайтесь с другими болельщиками во время матчей</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Персональная аналитика</h3>
+                <p>Отслеживайте свой прогресс и достижения</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Геймификация</h3>
+                <p>Зарабатывайте очки и разблокируйте достижения</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    loadSports();
+    loadNews();
+});
+
+function loadSports() {
+    fetch('/api/sports')
+        .then(response => response.json())
+        .then(sports => {
+            const grid = document.getElementById('sportsGrid');
+            grid.innerHTML = sports.map(sport => `
+                <div class="sport-card" onclick="openStream(${sport.id})">
+                    <div class="sport-icon">${sport.icon}</div>
+                    <h3 class="sport-name">${sport.name}</h3>
+                    <div class="sport-stats">
+                        <span class="streams">${sport.streams} трансляций</span>
+                        <span class="viewers">${sport.viewers.toLocaleString()} зрителей</span>
+                    </div>
+                    <div class="sport-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            `).join('');
+        })
+        .catch(error => console.error('Error loading sports:', error));
+}
+
+function loadNews() {
+    fetch('/api/news')
+        .then(response => response.json())
+        .then(news => {
+            const ticker = document.getElementById('newsTicker');
+            const newsText = news.map(item => item.title).join(' • ');
+            ticker.textContent = newsText;
+        })
+        .catch(error => console.error('Error loading news:', error));
+}
+
+function openStream(sportId) {
+    window.location.href = `/stream/${sportId}`;
+}
+</script>
+{% endblock %}
