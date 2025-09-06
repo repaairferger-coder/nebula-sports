@@ -5,11 +5,17 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
+    "start:codespace": "expo start --host 0.0.0.0",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build:android": "expo build:android",
-    "build:ios": "expo build:ios"
+    "build:ios": "expo build:ios",
+    "dev": "expo start --dev-client",
+    "tunnel": "expo start --tunnel",
+    "clear": "expo start --clear",
+    "doctor": "expo doctor",
+    "install:fix": "npx expo install --fix"
   },
   "dependencies": {
     "expo": "~49.0.0",
